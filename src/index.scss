@@ -1,3 +1,41 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Space Mono', monospace;
+  outline: none;
+}
+
 body {
   background-color: #424265;
+}
+
+.App {
+  background: #474767;
+  box-shadow: 0 4px 31px 25px rgba(0, 0, 0, 0.03);
+  border-radius: 24px;
+  color: white;
+  width: 705px;
+  margin: 100px auto;
+  padding: 40px;
+}
+
+.app-title {
+  margin: 0;
+}
+
+.btn {
+  background-color: #783aff;
+  font-size: 25px;
+  text-align: center;
+  width: 100%;
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: lighten(#783aff, 5%);
+  }
 }
