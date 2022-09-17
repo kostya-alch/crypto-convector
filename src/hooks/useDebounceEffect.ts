@@ -17,13 +17,21 @@ type ReturnProps = {
 
 export const useDebounceEffect = ({ delay }: Props): ReturnProps => {
   const isSourceRef = useRef<boolean>(true);
-  const [youPayValue, setYouPayValue] = useState(100);
-  const [youReceiveValue, setYouReceiveValue] = useState(100);
+  const [youPayValue, setYouPayValue] = useState<number>(0);
+  const [youReceiveValue, setYouReceiveValue] = useState<number>(0);
   const timerRef = useRef<NodeJS.Timeout>();
 
-  useEffect(() => {
-    async function fetchQuotes(amount: number, isSource: boolean = false) {}
+  const onChangePayValue = useCallback((value: number) => {
+    isSourceRef.current = true;
+    setYouPayValue(value);
+  }, []);
 
+  const onChangeReceiveValue = useCallback((value: number) => {
+    isSourceRef.current = false;
+    setYouReceiveValue(value);
+  }, []);
+
+  useEffect(() => {
     clearInterval(timerRef.current);
 
     timerRef.current = setTimeout(async () => {
@@ -52,16 +60,6 @@ export const useDebounceEffect = ({ delay }: Props): ReturnProps => {
 
     return () => clearInterval(timerRef.current);
   }, [delay, youPayValue, youReceiveValue]);
-
-  const onChangePayValue = useCallback((value: number) => {
-    isSourceRef.current = true;
-    setYouPayValue(value);
-  }, []);
-
-  const onChangeReceiveValue = useCallback((value: number) => {
-    isSourceRef.current = false;
-    setYouReceiveValue(value);
-  }, []);
 
   return {
     youPayValue,
