@@ -6,7 +6,7 @@ interface AmountBlockProps {
   currencyName: string;
   currencyIcon: string;
   value: number;
-  onChangeValue?: (val: number) => void;
+  onChangeValue: (value: number) => void;
 }
 
 export const AmountBlock: FC<AmountBlockProps> = ({
@@ -21,7 +21,12 @@ export const AmountBlock: FC<AmountBlockProps> = ({
     <div className={styles.root}>
       <p>{subtitle}</p>
       <div className={styles.bottom}>
-        <input value={value} type="text" className={styles.input} />
+        <input
+          onChange={(event) => onChangeValue(Number(event.target.value))}
+          value={value}
+          type="number"
+          className={styles.input}
+        />
         <div className={styles.info}>
           <h5>{currencyName}</h5>
           <img src={`/assets/${currencyIcon}.png`} alt="value" />
