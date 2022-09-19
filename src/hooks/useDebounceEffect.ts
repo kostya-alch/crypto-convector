@@ -52,29 +52,27 @@ export const useDebounceEffect = ({ delay }: Props): ReturnProps => {
       if (currentAmount < 19) {
         return;
       }
-      if (isSourceRef.current) {
-        try {
-          const { data } = await axios.post<QuoteResponse>(
-            `https://api-qjoa5a5qtq-uc.a.run.app/quotes`,
-            {
-              source_currency: 'USD',
-              target_crypto_asset_id: TARGET_ASSET_ID,
-              [isSourceRef.current ? 'source_amount' : 'target_amount']: String(currentAmount),
-            },
-          );
-          setFees({
-            fiat_blockchain_fee: data.fiat_blockchain_fee,
-            total_fee: data.total_fee,
-            absolute_internal_fee: data.absolute_internal_fee,
-          });
-          if (isSourceRef.current) {
-            setYouReceiveValue(Number(data.target_amount));
-          } else {
-            setYouPayValue(Number(data.source_amount));
-          }
-        } catch (e) {
-          console.log(e);
+      try {
+        const { data } = await axios.post<QuoteResponse>(
+          `https://api-qjoa5a5qtq-uc.a.run.app/quotes`,
+          {
+            source_currency: 'USD',
+            target_crypto_asset_id: TARGET_ASSET_ID,
+            [isSourceRef.current ? 'source_amount' : 'target_amount']: String(currentAmount),
+          },
+        );
+        setFees({
+          fiat_blockchain_fee: data.fiat_blockchain_fee,
+          total_fee: data.total_fee,
+          absolute_internal_fee: data.absolute_internal_fee,
+        });
+        if (isSourceRef.current) {
+          setYouReceiveValue(Number(data.target_amount));
+        } else {
+          setYouPayValue(Number(data.source_amount));
         }
+      } catch (e) {
+        console.log(e);
       }
     }, delay);
 
