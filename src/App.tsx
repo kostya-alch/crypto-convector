@@ -20,7 +20,7 @@ export interface QuoteResponse {
 }
 
 function App() {
-  const { youPayValue, youReceiveValue, onChangeReceiveValue, onChangePayValue } =
+  const { youPayValue, youReceiveValue, onChangeReceiveValue, onChangePayValue, fees } =
     useDebounceEffect({
       delay: 500,
     });
@@ -34,7 +34,11 @@ function App() {
         currencyIcon={'usd'}
         value={youPayValue}
       />
-      <FeesBlock networkFee={'14'} c14Fee={'13'} totalFee={'13'} />
+      <FeesBlock
+        networkFee={fees.fiat_blockchain_fee}
+        c14Fee={fees.absolute_internal_fee}
+        totalFee={fees.total_fee}
+      />
       <AmountBlock
         subtitle={'You Receive'}
         currencyName={'USDC EVMOS'}
