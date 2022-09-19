@@ -4,6 +4,7 @@ import './index.scss';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDebounceEffect } from './hooks/useDebounceEffect';
+import { FeesBlock } from './components/FeesBlock';
 
 export interface QuoteResponse {
   id: string;
@@ -33,6 +34,7 @@ function App() {
         currencyIcon={'usd'}
         value={youPayValue}
       />
+      <FeesBlock networkFee={'14'} c14Fee={'13'} totalFee={'13'} />
       <AmountBlock
         subtitle={'You Receive'}
         currencyName={'USDC EVMOS'}
