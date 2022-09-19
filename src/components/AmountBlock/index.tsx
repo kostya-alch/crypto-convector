@@ -24,7 +24,7 @@ export const AmountBlock: FC<AmountBlockProps> = ({
         <input
           onChange={(event) => onChangeValue(Number(event.target.value))}
           value={value}
-          type="number"
+          type="text"
           className={styles.input}
         />
         <div className={styles.info}>

@@ -19,8 +19,6 @@ export interface QuoteResponse {
 }
 
 function App() {
-  useEffect(() => {}, []);
-
   const { youPayValue, youReceiveValue, onChangeReceiveValue, onChangePayValue } =
     useDebounceEffect({
       delay: 500,

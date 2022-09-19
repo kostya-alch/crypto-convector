@@ -35,6 +35,11 @@ export const useDebounceEffect = ({ delay }: Props): ReturnProps => {
     clearInterval(timerRef.current);
 
     timerRef.current = setTimeout(async () => {
+      const currentAmount = isSourceRef.current ? youPayValue : youReceiveValue;
+
+      if (currentAmount < 19) {
+        return;
+      }
       if (isSourceRef.current) {
         try {
           const { data } = await axios.post<QuoteResponse>(
@@ -42,9 +47,7 @@ export const useDebounceEffect = ({ delay }: Props): ReturnProps => {
             {
               source_currency: 'USD',
               target_crypto_asset_id: TARGET_ASSET_ID,
-              [isSourceRef.current ? 'source_amount' : 'target_amount']: String(
-                isSourceRef.current ? youPayValue : youReceiveValue,
-              ),
+              [isSourceRef.current ? 'source_amount' : 'target_amount']: String(currentAmount),
             },
           );
           if (isSourceRef.current) {

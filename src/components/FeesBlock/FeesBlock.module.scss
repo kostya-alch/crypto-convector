@@ -1,0 +1,43 @@
+.root {
+  border-radius: 24px;
+  background-color: #33334b;
+  padding: 25px;
+  margin-bottom: 30px;
+
+  p,
+  h5 {
+    margin: 0;
+  }
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input {
+  background: transparent;
+  font-size: 40px;
+  color: white;
+  border: 0;
+  outline: none;
+  font-weight: bold;
+  width: 100%;
+  flex: 1;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 45px;
+    height: 45px;
+  }
+
+  h5 {
+    font-size: 33px;
+    margin-right: 13px;
+  }
+}
