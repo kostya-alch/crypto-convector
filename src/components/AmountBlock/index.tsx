@@ -29,7 +29,7 @@ export const AmountBlock: FC<AmountBlockProps> = ({
         />
         <div className={styles.info}>
           <h5>{currencyName}</h5>
-          <img src={`/assets/${currencyIcon}.png`} alt="value" />
+          <img src={`./assets/${currencyIcon}.svg`} alt="value" />
         </div>
       </div>
     </div>
